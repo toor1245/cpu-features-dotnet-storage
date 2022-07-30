@@ -66,7 +66,7 @@ jobs:
       - name: Git Push
         run: |
           cd storage
-          git status
+          git pull
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git add .
