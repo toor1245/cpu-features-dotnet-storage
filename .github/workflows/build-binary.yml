@@ -49,7 +49,7 @@ jobs:
         if: steps.project.outputs.cache-hit != 'true'
         run: |
           cd cpu_features.NET
-          ${{ runner.os!='Windows'&&'sudo '||''}}cmake . -Bcmake-build-release -DCMAKE_BUILD_TYPE=Release ${{ runner.os!='Windows'&&''||'-GNinja'}} -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+          ${{ runner.os!='Windows'&&'sudo '||''}}cmake . -Bcmake-build-release -DCMAKE_BUILD_TYPE=Release ${{ runner.os=='Windows'&&'-GNinja'||''}} -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
 
       - name: Build CMake project
         run: ${{ runner.os!='Windows'&&'sudo '||''}}cmake --build "cpu_features.NET/cmake-build-release" --config=Release
