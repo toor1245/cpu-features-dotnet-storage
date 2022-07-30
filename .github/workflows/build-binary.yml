@@ -9,10 +9,21 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+      #TODO: check on manual dispatch
+      - name: Echo branch name
+        run: echo ${{github.head_ref}}
+
       - name: Checkout current repo
         uses: actions/checkout@v3
         with:
           path: storage
+          fetch-depth: 0
+
+      - name: Git Status
+        run: |
+          cd storage
+          git switch ${{github.head_ref}}
+          git status
 
       - name: Install Ninja
         uses: seanmiddleditch/gha-setup-ninja@master
@@ -22,19 +33,13 @@ jobs:
         with:
           repository: toor1245/cpu_features.NET
           path: cpu_features.NET
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
-      - name: Check output
-        run: echo ${{ steps.vars.outputs.short_ref }}
-      
       - name: Cache CMake project
         id: project
         uses: actions/cache@v3
         with:
-          path: cpu_features.NET
-          key: project-${{ hashFiles('./cpu_features.NET/*') }}
+          path: cpu_features.NET/cmake-build-release
+          key: project-${{ hashFiles('./cpu_features.NET/src/*') }}
 
       - name: Configure CMake project
         if: steps.project.outputs.cache-hit != 'true'
@@ -54,12 +59,14 @@ jobs:
           cp ./cpu_features.NET/cmake-build-release/lib/cpu_features_dotnet.x64.dll ./storage/runtimes/win-x64/native/
 
       - name: Test
-        run: ls storage
+        run: ls storage && ls storage/runtimes/win-x64/native
 
-      - name: Deploy
-        uses: moodiest/push-to-branch-action@develop
-        env:
-          REPO: self
-          BRANCH: "create-pull-request/patch"
-          FOLDER: storage
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Git Push
+        run: |
+          cd storage
+          git status
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git add .
+          git commit -m "new date commit"
+          git push origin ${{github.head_ref}}
