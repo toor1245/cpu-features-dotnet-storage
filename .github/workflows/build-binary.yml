@@ -2,24 +2,20 @@ name: Build binary
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: 
+      - main
   #workflow_dispatch: # TODO: replace ${{github.head_ref}} for workflow_dispatch...
 
 jobs:
   build:
-    runs-on: ${{ matrix.platform.os }}
+    name: Test build
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        platform:
-        - {
-            os: windows-latest,
-            rid: win-x64
-          },
-        - {
-            os: ubuntu-latest,
-            rid: linux-x64
-          }
+        include:
+        - { os: windows-latest, rid: win-x64 }
+        - { os: ubuntu-22.04, rid: linux-x64 }
     steps:
       - name: Echo branch name
         run: echo ${{github.head_ref}} 
@@ -32,6 +28,9 @@ jobs:
 
       - name: Install Ninja
         uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Test Ninja
+        run: ninja --version && ls ninja-build
 
       - name: Checkout cpu_features.NET
         uses: actions/checkout@v3
@@ -50,19 +49,18 @@ jobs:
         if: steps.project.outputs.cache-hit != 'true'
         run: |
           cd cpu_features.NET
-          ${{ runner.os!='Windows'&&'sudo '||''}}cmake . -Bcmake-build-release -DCMAKE_BUILD_TYPE=Release -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+          ${{ runner.os!='Windows'&&'sudo '||''}}cmake . -Bcmake-build-release -DCMAKE_BUILD_TYPE=Release ${{ runner.os=='Windows'&&'-GNinja'||''}} -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
 
       - name: Build CMake project
-        run: |
-          cd cpu_features.NET
-          ${{ runner.os!='Windows'&&'sudo '||''}}cmake --build cmake-build-release --config=Release
+        run: ${{ runner.os!='Windows'&&'sudo '||''}}cmake --build "cpu_features.NET/cmake-build-release" --config=Release
 
       # TODO: make it depend on version?
-      - name: Copy dll
+      - name: Copy Binary
         shell: bash
         run: |
-          mkdir -p ./storage/runtimes/${{ matrix.platform.rid }}/native/
-          cp ./cpu_features.NET/cmake-build-release/lib/* ./storage/runtimes/${{ matrix.platform.rid }}/native/
+          ls ./cpu_features.NET/cmake-build-release/lib/
+          mkdir -p ./storage/runtimes/${{ matrix.rid }}/native/
+          cp ./cpu_features.NET/cmake-build-release/lib/cpu_features_dotnet.x64.* ./storage/runtimes/${{ matrix.rid }}/native/
 
       - name: Git Push
         run: |
@@ -71,5 +69,5 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git add .
-          git commit -m "Add ${{ matrix.platform.rid }} binary"
+          git commit -m "Add ${{ matrix.rid }} binary"
           git push origin ${{github.head_ref}}
