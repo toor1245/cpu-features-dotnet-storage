@@ -9,12 +9,15 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout current repo
+        uses: actions/checkout@v3
+        with:
+          path: storage
 
       - name: Install Ninja
         uses: seanmiddleditch/gha-setup-ninja@master
 
-      - name: Checkout repository
+      - name: Checkout cpu_features.NET
         uses: actions/checkout@v3
         with:
           repository: toor1245/cpu_features.NET
@@ -41,14 +44,13 @@ jobs:
       # TODO: make it depend on version?
       - name: Copy dll
         run: |
-          mkdir -p ./runtimes/win-x64/native/
-          cp ./cpu_features.NET/cmake-build-release/lib/cpu_features_dotnet.x64.dll ./runtimes/win-x64/native/
-          ls ./runtimes/win-x64/native/
+          mkdir -p ./storage/runtimes/win-x64/native/
+          cp ./cpu_features.NET/cmake-build-release/lib/cpu_features_dotnet.x64.dll ./storage/runtimes/win-x64/native/
 
       - name: Deploy
         uses: moodiest/push-to-branch-action@develop
         env:
           REPO: self
           BRANCH: "create-pull-request/patch"
-          FOLDER: runtimes
+          FOLDER: storage
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
