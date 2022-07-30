@@ -19,13 +19,21 @@ jobs:
         with:
           repository: toor1245/cpu_features.NET
           path: cpu_features.NET
+      
+      - name: Cache CMake project
+        id: project
+        uses: actions/cache@v3
+        with:
+          path: cpu_features.NET
+          key: project-${{ hashFiles('./cpu_features.NET/*') }}
 
       - name: Configure CMake project
+        if: steps.project.outputs.cache-hit != 'true'
         run: |
           cd cpu_features.NET
           cmake . -Bcmake-build-release -DCMAKE_BUILD_TYPE=Release -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
 
-      - name: Configure CMake project
+      - name: Build CMake project
         run: |
           cd cpu_features.NET
           cmake --build cmake-build-release --config=Release
@@ -42,5 +50,5 @@ jobs:
         env:
           REPO: self
           BRANCH: ${BRANCH_NAME}
-          FOLDER: .
+          FOLDER: runtimes
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
