@@ -7,16 +7,17 @@ on:
 
 jobs:
   build:
+    name: Test build
     runs-on: ${{ matrix.platform.os }}
     strategy:
       fail-fast: false
-      matrix:
-        platform:
-        - {
+      matrix: 
+        platform: 
+        - { 
             os: windows-latest,
             rid: win-x64
           },
-        - {
+        - { 
             os: ubuntu-latest,
             rid: linux-x64
           }
