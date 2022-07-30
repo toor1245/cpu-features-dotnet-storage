@@ -3,7 +3,7 @@ name: Build binary
 on:
   pull_request:
     branches: [ "main" ]
-  workflow_dispatch:
+  #workflow_dispatch: # TODO: replace ${{github.head_ref}} for workflow_dispatch...
 
 jobs:
   build:
@@ -11,19 +11,18 @@ jobs:
     steps:
       #TODO: check on manual dispatch
       - name: Echo branch name
-        run: echo ${{github.head_ref}}
+        run: echo ${{github.head_ref}} 
 
       - name: Checkout current repo
         uses: actions/checkout@v3
         with:
+          ref: ${{github.head_ref}}
           path: storage
-          fetch-depth: 0
 
-      - name: Git Status
-        run: |
-          cd storage
-          git switch ${{github.head_ref}}
-          git status
+      #- name: Fix detached HEAD # https://stackoverflow.com/a/3965714/8885358
+        #run: |
+          #cd storage
+          #git switch ${{github.head_ref}}
 
       - name: Install Ninja
         uses: seanmiddleditch/gha-setup-ninja@master
@@ -57,9 +56,6 @@ jobs:
         run: |
           mkdir -p ./storage/runtimes/win-x64/native/
           cp ./cpu_features.NET/cmake-build-release/lib/cpu_features_dotnet.x64.dll ./storage/runtimes/win-x64/native/
-
-      - name: Test
-        run: ls storage && ls storage/runtimes/win-x64/native
 
       - name: Git Push
         run: |
