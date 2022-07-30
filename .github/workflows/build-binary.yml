@@ -9,7 +9,6 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      #TODO: check on manual dispatch
       - name: Echo branch name
         run: echo ${{github.head_ref}} 
 
@@ -18,11 +17,6 @@ jobs:
         with:
           ref: ${{github.head_ref}}
           path: storage
-
-      #- name: Fix detached HEAD # https://stackoverflow.com/a/3965714/8885358
-        #run: |
-          #cd storage
-          #git switch ${{github.head_ref}}
 
       - name: Install Ninja
         uses: seanmiddleditch/gha-setup-ninja@master
@@ -64,5 +58,5 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git add .
-          git commit -m "new date commit"
+          git commit -m "Add win-x64 binary"
           git push origin ${{github.head_ref}}
