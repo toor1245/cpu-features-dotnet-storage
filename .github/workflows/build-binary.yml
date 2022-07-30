@@ -44,11 +44,11 @@ jobs:
           mkdir -p ./runtimes/win-x64/native/
           cp ./cpu_features.NET/cmake-build-release/lib/cpu_features_dotnet.x64.dll ./runtimes/win-x64/native/
           ls ./runtimes/win-x64/native/
-      - uses: nelonoel/branch-name@v1.0.1
+
       - name: Deploy
         uses: moodiest/push-to-branch-action@develop
         env:
           REPO: self
-          BRANCH: ${BRANCH_NAME}
+          BRANCH: "create-pull-request/patch"
           FOLDER: runtimes
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
