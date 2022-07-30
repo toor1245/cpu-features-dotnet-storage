@@ -60,7 +60,7 @@ jobs:
         run: |
           ls ./cpu_features.NET/cmake-build-release/lib/
           mkdir -p ./storage/runtimes/${{ matrix.rid }}/native/
-          cp ./cpu_features.NET/cmake-build-release/lib/* ./storage/runtimes/${{ matrix.rid }}/native/
+          cp ./cpu_features.NET/cmake-build-release/lib/cpu_features_dotnet.x64.* ./storage/runtimes/${{ matrix.rid }}/native/
 
       - name: Git Push
         run: |
