@@ -15,7 +15,7 @@ jobs:
       matrix:
         include:
         - { os: windows-latest, rid: win-x64 }
-        - { os: ubuntu-latest, rid: linux-x64 }
+        - { os: ubuntu-22.04, rid: linux-x64 }
     steps:
       - name: Echo branch name
         run: echo ${{github.head_ref}} 
