@@ -1,4 +1,4 @@
-name: Build binary
+name: Create Nuget package
 
 on:
   pull_request: #TODO: add pattern
@@ -101,10 +101,6 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v2.1.0
 
-      - name: Copy CpuFeaturesDotNet.csproj (crutch)
-        run: cp storage/CpuFeaturesDotNet.csproj src/CpuFeaturesDotNet
-        shell: bash
-
       - name: Copy native binaries
         run: cp -r storage/runtimes src/CpuFeaturesDotNet
         shell: bash
@@ -119,3 +115,25 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           path: out/*.nupkg
+      
+      #TODO: push nuget
+  close-pr:
+    name: Close PR
+    runs-on: ubuntu-latest
+    needs: nuget
+    steps:
+      - name: Echo action ref
+        run: echo ${{github.ref}} 
+    #https://octokit.github.io/rest.js/v18#pulls-update
+    #octokit.rest.pulls.update({
+    #  owner: ,
+    #  repo: ,
+    #  pull_number: ,
+    #  state: 'closed'
+    #});
+    #https://octokit.github.io/rest.js/v18#pulls-merge
+    #octokit.rest.pulls.merge({
+    #  owner,
+    #  repo,
+    #  pull_number,
+    #});
