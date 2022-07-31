@@ -61,7 +61,6 @@ jobs:
       - name: Build CMake project
         run: ${{ runner.os!='Windows'&&'sudo '||''}}cmake --build "cpu_features.NET/cmake-build-release" --config=Release
 
-      # TODO: make it depend on version?
       - name: Copy Binary
         shell: bash
         run: |
