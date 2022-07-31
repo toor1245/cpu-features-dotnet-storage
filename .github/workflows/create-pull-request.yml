@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: echo ${{ GITHUB_REF_NAME}}
+        run: echo ${{ env.GITHUB_REF}}
       #- name: Create Pull Request
       #  uses: actions/github-script@v6
         #with:
