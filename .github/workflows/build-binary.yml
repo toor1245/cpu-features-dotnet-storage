@@ -1,14 +1,16 @@
 name: Build binary
 
 on:
-  pull_request:
+  pull_request: #TODO: add pattern
     branches: 
       - main
-  #workflow_run:
-  #  workflows: ["Create PR"]
-  #  types:
-  #    - completed
-  #workflow_dispatch: # TODO: replace ${{github.head_ref}} for workflow_dispatch...
+  #workflow_dispatch: # TODO: replace ${{github.head_ref}} with github.ref parsing for workflow_dispatch...
+
+env:
+  # Stop wasting time caching packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  # Disable sending usage data to Microsoft
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
   build:
@@ -76,6 +78,7 @@ jobs:
           git add .
           git commit -m "Add ${{ matrix.rid }} binary"
           git push origin ${{github.head_ref}}
+
   nuget:
     name: Create Nuget package
     runs-on: ubuntu-latest
@@ -83,3 +86,36 @@ jobs:
     steps:
       - name: Echo branch name
         run: echo ${{github.head_ref}}
+
+      - name: Checkout cpu_features.NET
+        uses: actions/checkout@v3
+        with:
+          repository: toor1245/cpu_features.NET
+
+      - name: Checkout current repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{github.head_ref}}
+          path: storage
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v2.1.0
+
+      - name: Copy CpuFeaturesDotNet.csproj (crutch)
+        run: cp storage/CpuFeaturesDotNet.csproj src/CpuFeaturesDotNet
+        shell: bash
+
+      - name: Copy native binaries
+        run: cp -r storage/runtimes src/CpuFeaturesDotNet
+        shell: bash
+
+      - name: Build project
+        run: dotnet build "src/CpuFeaturesDotNet/CpuFeaturesDotNet.csproj" -c Release
+
+      - name: Pack Nuget
+        run: dotnet pack -c Release -o out
+       
+      - name: Upload Nuget to artifacts
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          path: out/*.nupkg
