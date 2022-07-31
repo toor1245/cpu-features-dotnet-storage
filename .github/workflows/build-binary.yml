@@ -15,7 +15,7 @@ jobs:
     name: Test build
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         include:
         - { os: windows-latest, rid: win-x64 }
@@ -43,12 +43,12 @@ jobs:
           repository: toor1245/cpu_features.NET
           path: cpu_features.NET
 
-      - name: Cache CMake project
-        id: project
-        uses: actions/cache@v3
-        with:
-          path: cpu_features.NET/cmake-build-release
-          key: project-${{ hashFiles('./cpu_features.NET/src/*') }}
+      #- name: Cache CMake project
+      #  id: project
+      #  uses: actions/cache@v3
+      #  with:
+      #    path: cpu_features.NET/cmake-build-release
+      #    key: project-${{ hashFiles('./cpu_features.NET/src/*') }}
 
       - name: Configure CMake project
         if: steps.project.outputs.cache-hit != 'true'
