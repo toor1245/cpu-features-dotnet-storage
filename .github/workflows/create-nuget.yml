@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        include:
+        include: # https://docs.microsoft.com/en-us/dotnet/core/rid-catalog
         - { os: windows-latest, rid: win-x64 }
         - { os: ubuntu-22.04, rid: linux-x64 }
         - { os: macos-latest, rid: osx-x64 }
