@@ -114,7 +114,46 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           path: out/*.nupkg
+
+      - name: Git Push
+        run: |
+          cd storage
+          git pull
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git add out/*.nupkg
+          git commit -m "Add Nuget package"
+          git push origin ${{github.head_ref}}
+
+  test-nuget:
+    name: Test Nuget
+    runs-on: ubuntu-latest
+    needs: nuget
+    steps:
+      - name: Checkout cpu_features.NET
+        uses: actions/checkout@v3
+        with:
+          repository: toor1245/cpu_features.NET
+
+      - name: Checkout current repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{github.head_ref}}
+          path: storage
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v2.1.0
       
+      - name: Restore .Net packages
+        run: dotnet restore --configfile storage/NuGet.Config
+      
+      - name: Build project
+        run: dotnet build "samples/CpuFeaturesDotNet.Samples/CpuFeaturesDotNet.Samples.csproj"
+
+#      - name: Run samples
+#        run: 
+        
+        
       #TODO: push nuget
 #  close-pr:
 #    name: Close PR
