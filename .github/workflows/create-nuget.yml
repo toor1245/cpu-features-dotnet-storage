@@ -116,27 +116,27 @@ jobs:
           path: out/*.nupkg
       
       #TODO: push nuget
-  close-pr:
-    name: Close PR
-    runs-on: ubuntu-latest
-    needs: nuget
-    steps:
-      - name: Echo action ref
-        run: echo ${{github.ref}} 
-
-      - name: Close PR
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const { repo, owner } = context.repo;
-            const pr_id = process.env.GITHUB_REF.replace('refs/pull/', '').replace('/merge', '');
-            const result = await github.rest.pulls.update({
-                owner: owner,
-                repo: repo,
-                pull_number: pr_id,
-                state: 'closed'
-            });
-
+#  close-pr:
+#    name: Close PR
+#    runs-on: ubuntu-latest
+#    needs: nuget
+#    steps:
+#      - name: Echo action ref
+#        run: echo ${{github.ref}} 
+#
+#      - name: Close PR
+#        uses: actions/github-script@v6
+#        with:
+#          script: |
+#            const { repo, owner } = context.repo;
+#            const pr_id = process.env.GITHUB_REF.replace('refs/pull/', '').replace('/merge', '');
+#            const result = await github.rest.pulls.update({
+#                owner: owner,
+#                repo: repo,
+#                pull_number: pr_id,
+#                state: 'closed'
+#            });
+#
     #https://octokit.github.io/rest.js/v18#pulls-update
     #octokit.rest.pulls.update({
     #  owner: ,
