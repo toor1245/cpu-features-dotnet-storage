@@ -56,8 +56,8 @@ jobs:
         if: steps.project.outputs.cache-hit != 'true'
         run: |
           cd cpu_features.NET
-          ${{ runner.os!='Windows'&&'sudo '||''}}cmake . -Bcmake-build-release -DCMAKE_BUILD_TYPE=Release ${{ runner.os=='Windows'&&'-GNinja'||''}} -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DBUILD_TESTING=OFF
-
+          ${{ runner.os!='Windows'&&'sudo '||''}}cmake . -Bcmake-build-release -DCMAKE_BUILD_TYPE=Release ${{ runner.os=='Windows'&&'-GNinja'||''}} -DBUILD_TESTING=OFF
+#-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
       - name: Build CMake project
         run: ${{ runner.os!='Windows'&&'sudo '||''}}cmake --build "cpu_features.NET/cmake-build-release" --config=Release
 
@@ -98,7 +98,7 @@ jobs:
           path: storage
 
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v2.1.0
+        uses: actions/setup-dotnet@v3
 
       - name: Copy native binaries
         run: cp -r storage/runtimes src/CpuFeaturesDotNet
@@ -142,7 +142,7 @@ jobs:
           path: storage
 
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v2.1.0
+        uses: actions/setup-dotnet@v3
       
       - name: Restore .Net packages
         run: dotnet restore --configfile storage/NuGet.Config
