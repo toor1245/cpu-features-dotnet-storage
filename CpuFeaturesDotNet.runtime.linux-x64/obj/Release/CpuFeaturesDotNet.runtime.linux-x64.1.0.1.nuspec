@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CpuFeaturesDotNet.runtime.linux-x64</id>
+    <version>1.0.1</version>
+    <authors>CpuFeaturesDotNet-native</authors>
+    <description>.NET version of google/cpu_features to get cpu info at runtime</description>
+    <tags>native</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard1.1">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/cmake-build-release/lib/cpu_features_dotnet.so" target="runtimes/linux-x64/native/cpu_features_dotnet.so" />
+  </files>
+</package>

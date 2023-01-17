@@ -1,0 +1,11 @@
+/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.linux-x64/bin/Release/netstandard1.1/linux-x64/cpu_features_dotnet.so
+/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.linux-x64/bin/Release/netstandard1.1/linux-x64/CpuFeaturesDotNet-native.deps.json
+/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.linux-x64/bin/Release/netstandard1.1/linux-x64/CpuFeaturesDotNet-native.dll
+/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.linux-x64/bin/Release/netstandard1.1/linux-x64/CpuFeaturesDotNet-native.pdb
+/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.linux-x64/obj/Release/netstandard1.1/linux-x64/CpuFeaturesDotNet.runtime.linux-x64.csproj.AssemblyReference.cache
+/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.linux-x64/obj/Release/netstandard1.1/linux-x64/CpuFeaturesDotNet.runtime.linux-x64.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.linux-x64/obj/Release/netstandard1.1/linux-x64/CpuFeaturesDotNet.runtime.linux-x64.AssemblyInfoInputs.cache
+/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.linux-x64/obj/Release/netstandard1.1/linux-x64/CpuFeaturesDotNet.runtime.linux-x64.AssemblyInfo.cs
+/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.linux-x64/obj/Release/netstandard1.1/linux-x64/CpuFeaturesDotNet.runtime.linux-x64.csproj.CoreCompileInputs.cache
+/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.linux-x64/obj/Release/netstandard1.1/linux-x64/CpuFeaturesDotNet-native.dll
+/home/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.linux-x64/obj/Release/netstandard1.1/linux-x64/CpuFeaturesDotNet-native.pdb
