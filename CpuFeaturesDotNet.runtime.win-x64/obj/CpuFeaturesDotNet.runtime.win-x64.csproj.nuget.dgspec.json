@@ -1,0 +1,64 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\a\\cpu-features-dotnet-storage\\cpu-features-dotnet-storage\\storage\\CpuFeaturesDotNet.runtime.win-x64\\CpuFeaturesDotNet.runtime.win-x64.csproj": {}
+  },
+  "projects": {
+    "D:\\a\\cpu-features-dotnet-storage\\cpu-features-dotnet-storage\\storage\\CpuFeaturesDotNet.runtime.win-x64\\CpuFeaturesDotNet.runtime.win-x64.csproj": {
+      "version": "1.0.1",
+      "restore": {
+        "projectUniqueName": "D:\\a\\cpu-features-dotnet-storage\\cpu-features-dotnet-storage\\storage\\CpuFeaturesDotNet.runtime.win-x64\\CpuFeaturesDotNet.runtime.win-x64.csproj",
+        "projectName": "CpuFeaturesDotNet.runtime.win-x64",
+        "projectPath": "D:\\a\\cpu-features-dotnet-storage\\cpu-features-dotnet-storage\\storage\\CpuFeaturesDotNet.runtime.win-x64\\CpuFeaturesDotNet.runtime.win-x64.csproj",
+        "packagesPath": "C:\\Users\\runneradmin\\.nuget\\packages\\",
+        "outputPath": "D:\\a\\cpu-features-dotnet-storage\\cpu-features-dotnet-storage\\storage\\CpuFeaturesDotNet.runtime.win-x64\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\runneradmin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard1.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard1.1": {
+            "targetAlias": "netstandard1.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard1.1": {
+          "targetAlias": "netstandard1.1",
+          "dependencies": {
+            "NETStandard.Library": {
+              "target": "Package",
+              "version": "[1.6.1, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

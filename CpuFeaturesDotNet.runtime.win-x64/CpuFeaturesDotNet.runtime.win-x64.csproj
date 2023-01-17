@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <LangVersion>8</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <TargetFramework>netstandard1.1</TargetFramework>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <Version>1.0.1</Version>
+        <AssemblyName>CpuFeaturesDotNet-native</AssemblyName>
+
+        <!-- Nuget Properties -->
+        <PackageId>CpuFeaturesDotNet.runtime.win-x64</PackageId>
+        <Description>.NET version of google/cpu_features to get cpu info at runtime</Description>
+        <PackageTags>native</PackageTags>
+        <PackageOutputPath>D:\a\cpu-features-dotnet-storage\cpu-features-dotnet-storage/storage</PackageOutputPath>
+        <PackageVersion>1.0.1</PackageVersion>
+
+        <!-- Signing -->
+        <SignAssembly>false</SignAssembly>
+        <PublicSign>false</PublicSign>
+        <DelaySign>false</DelaySign>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="
+       D:/a/cpu-features-dotnet-storage/cpu-features-dotnet-storage/cmake-build-release/lib/Release/cpu_features_dotnet.dll
+      ">
+        <PackagePath>runtimes/win-x64/native/%(Filename)%(Extension)</PackagePath>
+        <Pack>true</Pack>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+</Project>

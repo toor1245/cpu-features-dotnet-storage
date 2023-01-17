@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = CpuFeaturesDotNet.runtime.win-x64
+build_property.ProjectDir = D:\a\cpu-features-dotnet-storage\cpu-features-dotnet-storage\storage\CpuFeaturesDotNet.runtime.win-x64\
