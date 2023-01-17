@@ -19,14 +19,11 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        include: # https://docs.microsoft.com/en-us/dotnet/core/rid-catalog
-        - { os: windows-latest, rid: win-x64 }
-        - { os: ubuntu-22.04, rid: linux-x64 }
-        - { os: macos-latest, rid: osx-x64 }
+        include: 
+        - { os: windows-latest }
+        - { os: ubuntu-22.04 }
+        - { os: macos-latest }
     steps:
-      - name: Echo branch name
-        run: echo ${{github.head_ref}} 
-
       - name: Checkout current repo
         uses: actions/checkout@v3
         with:
@@ -36,37 +33,20 @@ jobs:
       - name: Install Ninja
         uses: seanmiddleditch/gha-setup-ninja@master
 
-      - name: Test Ninja
-        run: ninja --version && ls ninja-build
-
       - name: Checkout cpu_features.NET
         uses: actions/checkout@v3
         with:
           repository: toor1245/cpu_features.NET
           path: cpu_features.NET
 
-      #- name: Cache CMake project
-      #  id: project
-      #  uses: actions/cache@v3
-      #  with:
-      #    path: cpu_features.NET/cmake-build-release
-      #    key: project-${{ hashFiles('./cpu_features.NET/src/*') }}
-
       - name: Configure CMake project
-        if: steps.project.outputs.cache-hit != 'true'
-        run: |
-          cd cpu_features.NET
-          ${{ runner.os!='Windows'&&'sudo '||''}}cmake . -Bcmake-build-release -DCMAKE_BUILD_TYPE=Release ${{ runner.os=='Windows'&&'-GNinja'||''}} -DBUILD_TESTING=OFF
-#-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
-      - name: Build CMake project
-        run: ${{ runner.os!='Windows'&&'sudo '||''}}cmake --build "cpu_features.NET/cmake-build-release" --config=Release
+        run: ${{ runner.os!='Windows'&&'sudo '||''}}cmake "cpu_features.NET" -Bcmake-build-release -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCPU_FEATURES_DOTNET_PACKAGE_OUTPUT_PATH="${{github.workspace}}/storage"
 
-      - name: Copy Binary
-        shell: bash
-        run: |
-          ls ./cpu_features.NET/cmake-build-release/lib/
-          mkdir -p ./storage/runtimes/${{ matrix.rid }}/native/
-          cp ./cpu_features.NET/cmake-build-release/lib/cpu_features_dotnet.x64.* ./storage/runtimes/${{ matrix.rid }}/native/
+      - name: Build CMake project
+        run: ${{ runner.os!='Windows'&&'sudo '||''}}cmake --build "cmake-build-release" --config=Release
+
+      - name: cpu_features_dotnet_runtime_package
+        run: ${{ runner.os!='Windows'&&'sudo '||''}}cmake --build "cmake-build-release" --config=Release --target=cpu_features_dotnet_runtime_package
 
       - name: Git Push
         run: |
@@ -75,7 +55,7 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git add .
-          git commit -m "Add ${{ matrix.rid }} binary"
+          git commit -m "Add ${{ matrix.os }} binary"
           git push origin ${{github.head_ref}}
 
   nuget:
@@ -83,9 +63,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Echo branch name
-        run: echo ${{github.head_ref}}
-
       - name: Checkout cpu_features.NET
         uses: actions/checkout@v3
         with:
@@ -100,20 +77,16 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v3
 
-      - name: Copy native binaries
-        run: cp -r storage/runtimes src/CpuFeaturesDotNet
-        shell: bash
+      - name: Configure CMake project
+        run: ${{ runner.os!='Windows'&&'sudo '||''}}cmake "cpu_features.NET" -Bcmake-build-release -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCPU_FEATURES_DOTNET_PACKAGE_OUTPUT_PATH="${{github.workspace}}/storage"
 
-      - name: Build project
-        run: dotnet build "src/CpuFeaturesDotNet/CpuFeaturesDotNet.csproj" -c Release
-
-      - name: Pack Nuget
-        run: dotnet pack -c Release -o storage/nuget
+      - name: cpu_features_dotnet_runtime_package
+        run: ${{ runner.os!='Windows'&&'sudo '||''}}cmake --build "cmake-build-release" --config=Release --target=cpu_features_dotnet_package
        
       - name: Upload Nuget to artifacts
         uses: actions/upload-artifact@v3.1.0
         with:
-          path: storage/nuget/*.nupkg
+          path: storage/*.nupkg
 
       - name: Git Push
         run: |
