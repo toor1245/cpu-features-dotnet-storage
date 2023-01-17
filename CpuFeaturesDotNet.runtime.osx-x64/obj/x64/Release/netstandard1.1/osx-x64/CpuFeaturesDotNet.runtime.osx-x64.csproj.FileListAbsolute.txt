@@ -1,0 +1,11 @@
+/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/bin/x64/Release/netstandard1.1/osx-x64/cpu_features_dotnet.dylib
+/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/bin/x64/Release/netstandard1.1/osx-x64/CpuFeaturesDotNet-native.deps.json
+/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/bin/x64/Release/netstandard1.1/osx-x64/CpuFeaturesDotNet-native.dll
+/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/bin/x64/Release/netstandard1.1/osx-x64/CpuFeaturesDotNet-native.pdb
+/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/obj/x64/Release/netstandard1.1/osx-x64/CpuFeaturesDotNet.runtime.osx-x64.csproj.AssemblyReference.cache
+/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/obj/x64/Release/netstandard1.1/osx-x64/CpuFeaturesDotNet.runtime.osx-x64.GeneratedMSBuildEditorConfig.editorconfig
+/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/obj/x64/Release/netstandard1.1/osx-x64/CpuFeaturesDotNet.runtime.osx-x64.AssemblyInfoInputs.cache
+/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/obj/x64/Release/netstandard1.1/osx-x64/CpuFeaturesDotNet.runtime.osx-x64.AssemblyInfo.cs
+/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/obj/x64/Release/netstandard1.1/osx-x64/CpuFeaturesDotNet.runtime.osx-x64.csproj.CoreCompileInputs.cache
+/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/obj/x64/Release/netstandard1.1/osx-x64/CpuFeaturesDotNet-native.dll
+/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/obj/x64/Release/netstandard1.1/osx-x64/CpuFeaturesDotNet-native.pdb

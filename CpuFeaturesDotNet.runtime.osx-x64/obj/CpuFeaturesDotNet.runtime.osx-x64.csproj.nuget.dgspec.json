@@ -1,0 +1,57 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/CpuFeaturesDotNet.runtime.osx-x64.csproj": {}
+  },
+  "projects": {
+    "/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/CpuFeaturesDotNet.runtime.osx-x64.csproj": {
+      "version": "1.0.1",
+      "restore": {
+        "projectUniqueName": "/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/CpuFeaturesDotNet.runtime.osx-x64.csproj",
+        "projectName": "CpuFeaturesDotNet.runtime.osx-x64",
+        "projectPath": "/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/CpuFeaturesDotNet.runtime.osx-x64.csproj",
+        "packagesPath": "/Users/runner/.nuget/packages/",
+        "outputPath": "/Users/runner/work/cpu-features-dotnet-storage/cpu-features-dotnet-storage/storage/CpuFeaturesDotNet.runtime.osx-x64/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/runner/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard1.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard1.1": {
+            "targetAlias": "netstandard1.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard1.1": {
+          "targetAlias": "netstandard1.1",
+          "dependencies": {
+            "NETStandard.Library": {
+              "target": "Package",
+              "version": "[1.6.1, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/runner/.dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "osx-x64": {
+          "#import": []
+        }
+      }
+    }
+  }
+}
